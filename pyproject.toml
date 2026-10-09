@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=68", "pybind11>=2.11"]
+build-backend = "build_backend"
+backend-path = ["."]
+
+[project]
+name = "FeatureZ"
+version = "0.1.0"
+description = "FeatureZ – natural language interface for topology preserving compression"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [
+    { name = "Nathaniel Gorski", email = "gorski@sci.utah.edu" }
+]
+dependencies = ["cmake", "numpy", "dulwich", "pybind11>=2.11"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[project.scripts]
+featurez-compress = "FeatureZ.cli:compress_main"
+featurez-decompress = "FeatureZ.cli:decompress_main"
+featurez-install-base-compressor = "FeatureZ.cli:install_base_compressor_main"
