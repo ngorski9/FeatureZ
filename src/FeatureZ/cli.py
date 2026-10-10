@@ -8,7 +8,9 @@ import time
 
 import numpy as np
 
-from .FeatureZ_compressor import _base_compressor
+from .featurez_compressor import _base_compressor
+from .featurez_compressor import compress, decompress, _base_compressor
+from .data import Data
 
 FEATURES = (
     "contour-tree", "Morse-Smale-segmentation", "critical points",
@@ -38,9 +40,6 @@ def _psnr(original, reconstructed):
 
 
 def _compress(args):
-    from .FeatureZ_compressor import compress, decompress, _base_compressor
-    from .base_compressors.data import Data
-
     started = time.perf_counter()
 
     is_vti = args.input.lower().endswith(".vti")
@@ -195,7 +194,6 @@ def decompress_main(argv=None):
     parser.add_argument("-bc-binary", dest="base_compressor_binary", help="(Optional) if the base compressor binary not located in the default location used by featurez-install-base-compressor "\
                                                                           "(which is where it would be git cloned into the cwd), specify the location for the binary")
     args = parser.parse_args(argv)
-    from .FeatureZ_compressor import decompress
     started = time.perf_counter()
     data = decompress(args.compressed, args.output, args.base_compressor_binary,
                       vtk_array_name=args.array)

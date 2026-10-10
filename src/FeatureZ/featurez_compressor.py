@@ -10,7 +10,9 @@ import numpy as np
 from vtk.util.numpy_support import vtk_to_numpy, numpy_to_vtk
 import vtk
 
-from .base_compressors.data import Data
+from importlib import import_module
+
+from .data import Data
 from .base_compressors.base_compressor import BaseCompressor
 from .featurez import _contours_ublb, _contour_tree_ublb, _featurez_compress, _featurez_decompress
 
@@ -28,7 +30,6 @@ _BASE_COMPRESSORS = {
 def _base_compressor(name):
     if name not in _BASE_COMPRESSORS:
         raise ValueError(f"Unsupported base compressor in archive: {name}")
-    from importlib import import_module
 
     module, attribute = _BASE_COMPRESSORS[name]
     return getattr(import_module(f".base_compressors.{module}", __package__), attribute)

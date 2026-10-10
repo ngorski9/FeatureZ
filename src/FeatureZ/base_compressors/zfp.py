@@ -3,7 +3,7 @@ import subprocess
 from dulwich import porcelain
 
 from .base_compressor import BaseCompressor, BaseCompressorAlreadyInstalledException
-from .data import Data
+from ..data import Data
 from FeatureZ.installation_utils import cmake_build
 
 

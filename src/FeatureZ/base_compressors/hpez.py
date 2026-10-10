@@ -1,11 +1,9 @@
 import os
-import shutil
 import subprocess
-import tarfile
 from dulwich import porcelain
 
 from .base_compressor import BaseCompressorAlreadyInstalledException, BaseCompressor
-from .data import Data
+from ..data import Data
 from FeatureZ.installation_utils import cmake_build
 
 
